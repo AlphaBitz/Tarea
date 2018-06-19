@@ -34,8 +34,9 @@ class Lista:
                     n.next.prev=n
                     self.contador=self.contador+1
                     return
-                elif aux.apellido==n.apellido:
-                    return "Apellido Repetido"   
+                if aux.apellido==n.apellido:
+                    return "Apellido Repetido"
+            aux=aux.next
         
     def print_list(self):
         if self.empty():
