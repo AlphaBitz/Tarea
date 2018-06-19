@@ -2,11 +2,16 @@
 # import node
 
 class Node:
-    def __init__(self, data):
-        self.data = data
+    def __init__(self,nombre,apellido,email,numero):
+        self.nombre = nombre
+        self.apellido=apellido
+        self.email=email
+        self.numero=numero
         self.next_node = None
+        self.after_node =None
+        self.contador= 0
 
-class List:
+class Lista:
     def __init__(self):
         self.head = None
         self.tail = None
@@ -14,14 +19,9 @@ class List:
     def empty(self):
         return self.head == None
 
-    def insert_last(self, element):
-        if self.empty():
-            self.head = Node(element)
-            self.tail = self.head
-        else:
-            node = Node(element)
-            self.tail.next_node = node
-            self.tail = node
+    def insert(self,nombre,apellido,email,numero):
+        n=Node(nombre,apellido,email,numero)
+        
 
     def insert_first(self, element):
         if self.empty():
@@ -46,11 +46,3 @@ class List:
                 if temp == None:
                     break
 
-lista = List()
-lista.insert_last(4)
-lista.insert_last(2)
-lista.insert_last(6)
-lista.insert_first(1)
-lista.print_list()
-print(lista.head.data)
-print(lista.tail.data)
