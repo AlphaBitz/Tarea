@@ -7,31 +7,32 @@ class Node:
         self.apellido=apellido
         self.email=email
         self.numero=numero
-        self.next_node = None
-        self.after_node =None
-        self.contador= 0
+        self.next = None
+        self.prev = None
 
 class Lista:
     def __init__(self):
         self.head = None
-        self.tail = None
-
+        self.contador=0
+        
     def empty(self):
         return self.head == None
-
+    
     def insert(self,nombre,apellido,email,numero):
         n=Node(nombre,apellido,email,numero)
-        
-
-    def insert_first(self, element):
-        if self.empty():
-            self.head = Node(element)
-            self.tail = self.head
+        if self.empty:
+            n=self.head
         else:
-            node = Node(element)
-            node.next_node = self.head
-            self.head = node
-
+            aux=self.head
+            while aux.next:
+                if aux.apellido<n.apellido:
+                    n.next=aux.next
+                    n.prev=aux
+                    aux.next=n
+                    n.next.prev=n
+                    return
+                elif aux.apellido==n.apellido:
+                    return "Apellido Repetido"               
     def print_list(self):
         if self.empty():
              print("Lista vacia")
