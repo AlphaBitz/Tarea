@@ -22,6 +22,8 @@ class Lista:
         n=Node(nombre,apellido,email,numero)
         if self.empty:
             n=self.head
+            self.contador++
+            return
         else:
             aux=self.head
             while aux.next:
@@ -30,10 +32,11 @@ class Lista:
                     n.prev=aux
                     aux.next=n
                     n.next.prev=n
+                    self.contador++
                     return
                 elif aux.apellido==n.apellido:
                     return "Apellido Repetido"   
-        self.contador++
+        
     def print_list(self):
         if self.empty():
              print("Lista vacia")
