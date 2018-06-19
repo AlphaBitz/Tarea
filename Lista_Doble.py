@@ -32,7 +32,8 @@ class Lista:
                     n.next.prev=n
                     return
                 elif aux.apellido==n.apellido:
-                    return "Apellido Repetido"               
+                    return "Apellido Repetido"   
+        self.contador++
     def print_list(self):
         if self.empty():
              print("Lista vacia")
