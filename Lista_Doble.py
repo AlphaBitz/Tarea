@@ -22,7 +22,7 @@ class Lista:
         n=Node(nombre,apellido,email,numero)
         if self.empty:
             n=self.head
-            self.contador++
+            self.contador=self.contador+1
             return
         else:
             aux=self.head
@@ -32,7 +32,7 @@ class Lista:
                     n.prev=aux
                     aux.next=n
                     n.next.prev=n
-                    self.contador++
+                    self.contador=self.contador+1
                     return
                 elif aux.apellido==n.apellido:
                     return "Apellido Repetido"   
