@@ -52,7 +52,6 @@ class ABB:
         if self.empty():
           print ("Sin Raiz")
           return None
-
         else:
             return self._buscar(apellido, self.root)
     def eliminar(self, apellido): 
