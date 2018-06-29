@@ -132,4 +132,7 @@ class AVL():
           print ("Sin Raiz")
           return None
         else:
-return self._buscar(apellido,root)
+          return self._buscar(apellido,root)
+a=AVL()
+root= None
+root = insertar_a(root,"Ej","1","2","3","4")
