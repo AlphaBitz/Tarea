@@ -21,26 +21,15 @@ class AVL():
             root.left = self.insertar_a(root.left, nombre,apellido,email,numero)
       else:
             root.right = self.insertar_a(root.right, nombre,apellido,email,numero) 
-            #Se ingresa normalmente
       root.altura = 1 + max(self.get_altura(root.left),self.get_altura(root.right))
-            #Se aumenta la altura del nodo anterior
-      balance = self.get_balance(root)
-            #Se obtiene el balance del arbol
- 
-    
+      balance = self.get_balance(root)  
       if balance > 1 and apellido < root.left.apellido:
             return self.rightRotate(root)
- 
-        # Case 2 - Right Right
       if balance < -1 and apellido > root.right.apellido:
             return self.leftRotate(root)
- 
-        # Case 3 - Left Right
       if balance > 1 and apellido > root.left.apellido:
             root.left = self.leftRotate(root.left)
             return self.rightRotate(root)
- 
-        # Case 4 - Right Left
       if balance < -1 and apellido < root.right.apellido:
             root.right = self.rightRotate(root.right)
             return self.leftRotate(root)
@@ -50,7 +39,6 @@ class AVL():
             return root
         return self.valor_min(root.left)
     def eliminar_a(self, root, apellido):
-        # Se elimina normalmente ( Si es raiz)
         if root is None:
             return root
         elif apellido < root.apellido:
@@ -63,67 +51,47 @@ class AVL():
                 temp = root.right
                 root = None
                 return temp
- 
             elif root.right is None:
                 temp = root.left
                 root = None
                 return temp
- 
             temp = self.valor_min(root.right)
             root.apellido = temp.apellido
             root.right = self.eliminar_a(root.right,temp.apellido)
-        # Si solo tiene un nodo, lo retorna
         if root is None:
-            return root
-        
-        root.height = 1 + max(self.get_altura(root.left), self.get_altura(root.right))
- 
-        
+            return root  
+        root.height = 1 + max(self.get_altura(root.left), self.get_altura(root.right))    
         balance = self.get_balance(root)
- 
         if balance > 1 and self.get_balance(root.left) >= 0:
             return self.rightRotate(root)
- 
-        # Case 2 - Right Right
         if balance < -1 and self.get_balance(root.right) <= 0:
             return self.leftRotate(root)
- 
-        # Case 3 - Left Right
         if balance > 1 and self.get_balance(root.left) < 0:
             root.left = self.leftRotate(root.left)
             return self.rightRotate(root)
- 
-        # Case 4 - Right Left
         if balance < -1 and self.get_balance(root.right) > 0:
             root.right = self.rightRotate(root.right)
             return self.leftRotate(root)
- 
         return root
     def leftRotate(self, z):
         y = z.right
         T2 = y.left
-        #Lo rota
         y.left = z
         z.right = T2
-        #Aumenta la altura
         z.altura = 1 + max(self.get_altura(z.left),
                          self.get_altura(z.right))
         y.altura = 1 + max(self.get_altura(y.left),
                          self.get_altura(y.right))
-        # Devuelva la nueva raiz
         return y
     def rightRotate(self, z):
         y = z.left
         T3 = y.right
-        #Rotando
         y.right = z
         z.left = T3
-        #Actualizando altura
         z.altura = 1 + max(self.get_altura(z.left),
                         self.get_altura(z.right))
         y.altura = 1 + max(self.get_altura(y.left),
                         self.get_altura(y.right))
-        #Devuelve la nueva raiz
         return y
     def get_altura(self, root):
         if root is None:
