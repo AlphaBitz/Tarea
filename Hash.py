@@ -1,4 +1,4 @@
-class Node:
+class Node: #Hash realizado con ABB
     def __init__(self, nombre,apellido,email,numero):
         self.left = None
         self.right = None
@@ -111,7 +111,7 @@ def imprimir (node):
     imprimir(node.left)
     node.get_info()
     imprimir(node.right)      
-def hash1(key):
+def hash1(key): #Para buscar la posicion, se ocupo cada casilla para cada letra, por esto se le asigna un tamaño 26 al size)
   return ord(key[0])-13
 class Hash:
   def __init__(self,size=26):
@@ -137,5 +137,5 @@ class Hash:
   def buscar_h(self,apellido):
     pos=hash1(apellido)%self.size
     self.lista[pos].buscar(apellido)
-  
+  #Funciones llamadas desde el ABB en la posición de la lista.
   
