@@ -54,53 +54,6 @@ class ABB:
           return None
         else:
             return self._buscar(apellido, self.root)
-    def eliminar(self, apellido): 
-        if self.empty():
-            print ("Sin Raiz")
-            return None
-        return self.eliminar_nodo(self.buscar(apellido))
-
-    def eliminar_nodo(self, node):
-        def min_value_node(n):
-            current = n
-            while current.left != None:
-                current = current.left
-            return current
-        def number_children(n):
-            number_children = 0
-            if n.left != None:
-                number_children += 1
-            if n.right != None:
-                number_children += 1
-            return number_children
-
-        node_parent = node.parent 
-        node_children = number_children(node)
-
-        if node_children == 0:
-            print ("Sin padres")
-            if node_parent.left == node:
-                node_parent.left = None
-            else:
-                node_parent.right = None
-        if node_children == 1:
-            print ("1 Hijo")
-            if node.left != None:
-                child = node.left
-            else:
-                child = node.right
-            if node_parent.left == node:
-                node_parent.left = child
-            else:
-                node_parent.right = child
-            child.parent = node_parent
-        if node_children == 2:
-            print ("2 Hijos")
-            successor = min_value_node(node.right)
-            node.apellido = successor.apellido 
-            self.eliminar_nodo(successor)
-        
-
     def imprimir(self, node): #Implementar
         if node is not None:
             self.imprimir(node.left)
@@ -111,20 +64,50 @@ def imprimir (node):
     imprimir(node.left)
     node.get_info()
     imprimir(node.right)      
-def hash1(key): #Para buscar la posicion, se ocupo cada casilla para cada letra, por esto se le asigna un tamaño 26 al size)
-  return ord(key[0])-13
-class Hash:
+def deleteNode(root, apellido):
+    def minValueNode( node):
+      current = node
+      while(current.left is not None):
+        current = current.left  
+      return current 
+    if root is None:
+        return root 
+    if apellido < root.apellido:
+        root.left = deleteNode(root.left, apellido)
+    elif apellido > root.apellido:
+        root.right = deleteNode(root.right, apellido)
+    else:
+        if root.left is None :
+            temp = root.right 
+            root = None
+            return temp              
+        elif root.right is None :
+            temp = root.left 
+            root = None
+            return temp
+        temp = minValueNode(root.right)
+        root.apellido = temp.apellido
+        root.right = deleteNode(root.right , temp.apellido)
+    return root 
+class Hashing: 
   def __init__(self,size=26):
     self.size=size
     self.lista=[None]*size
+  def hash1(self,key): #Para obtener la posición se dividio la lista en 26, teniendo 1 posición para cada vocal
+      return ord(key[0])-13
   def insertar_h(self, nombre,apellido,email,numero):
-    pos=hash1(apellido)%self.size
+    pos=self.hash1(apellido)%self.size
     if self.lista[pos] is None:
       self.lista[pos]=ABB()
-      self.lista[pos].insertar(nombre,apellido,email,numero)
+      self.lista[pos].insertar_ABB(nombre,apellido,email,numero)
     else:
-      self.lista[pos].insertar(nombre,apellido,email,numero)
+      self.lista[pos].insertar_ABB(nombre,apellido,email,numero)
   def imprimir_h(self):
+    def imprimir (node):
+       if node is not None:
+         imprimir(node.left)
+         node.get_info()
+         imprimir(node.right)
     for i in range (self.size):
       if self.lista[i] is not None:
         imprimir(self.lista[i].root)
@@ -132,10 +115,9 @@ class Hash:
         char = chr(i+65)
         print ("Sin Contacto en", char)
   def eliminar_h(self,apellido):
-    pos=hash1(apellido)%self.size
-    self.lista[pos].eliminar(apellido)
+    pos=self.hash1(apellido)%self.size
+    self.lista[pos].deleteNode(self.lista[pos].root, apellido)
   def buscar_h(self,apellido):
-    pos=hash1(apellido)%self.size
-    self.lista[pos].buscar(apellido)
-  #Funciones llamadas desde el ABB en la posición de la lista.
-  
+    pos=self.hash1(apellido)%self.size
+    self.lista[pos].buscar_ABB(apellido) 
+   #Para las F(x) solo se llamo a la posición de la lista para invocar al ABB y luego hacer la función de este.
