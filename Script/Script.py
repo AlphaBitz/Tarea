@@ -2,9 +2,11 @@ from Lista import Nodo_L
 from Lista import Lista
 from ABB import Nodo_ABB
 from ABB import ABB
+from ABB import deleteNode
 from Hashing import Hashing
 from AVL import AVL
 from AVL import Nodo
+
 class Estructura:
   def menu1(self):
    print("Bienvenido!")
@@ -48,7 +50,7 @@ class Estructura:
             if opcion1=="1":
               lista.eliminar_L(eliminar)
             if opcion1=="2":
-                 abb.eliminar_ABB(eliminar)
+               deleteNode(abb.root,eliminar)
             if opcion1=="3":
                  avl.eliminar_a(root,eliminar)
             if opcion1=="4":
