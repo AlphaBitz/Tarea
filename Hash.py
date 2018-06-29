@@ -1,4 +1,4 @@
-class Node: #Hash realizado con ABB
+class Nodo_ABB:
     def __init__(self, nombre,apellido,email,numero):
         self.left = None
         self.right = None
@@ -19,21 +19,21 @@ class ABB:
     def _insertar(self,nombre,apellido,email,numero , node):
         if apellido < node.apellido:
             if node.left == None:
-                node.left = Node(nombre,apellido,email,numero)
+                node.left = Nodo_ABB(nombre,apellido,email,numero)
                 node.left.parent = node
             else:
                 self._insertar(nombre,apellido,email,numero , node.left)
         elif apellido > node.apellido:
             if node.right == None:
-                node.right = Node(nombre,apellido,email,numero)
+                node.right = Nodo_ABB(nombre,apellido,email,numero)
                 node.right.parent = node
             else:
                 self._insertar(nombre,apellido,email,numero, node.right)
         else:
             print("El apellido ya a sido ingresado")
-    def insertar(self, nombre,apellido,email,numero):
+    def insertar_ABB(self, nombre,apellido,email,numero):
         if self.empty():
-            self.root = Node(nombre,apellido,email,numero)
+            self.root = Nodo_ABB(nombre,apellido,email,numero)
         else:
             self._insertar(nombre,apellido,email,numero, self.root)
     def _buscar(self, apellido, node):
@@ -48,22 +48,19 @@ class ABB:
         elif apellido > node.apellido and node.right != None:
             return self._buscar(apellido, node.right)
         print("No encontrado")
-    def buscar(self, apellido):
+    def buscar_ABB(self, apellido):
         if self.empty():
           print ("Sin Raiz")
           return None
         else:
             return self._buscar(apellido, self.root)
-    def imprimir(self, node): #Implementar
-        if node is not None:
-            self.imprimir(node.left)
+    def imprimir_ABB(self, node):
+        if node is None:
+            pass
+        else:
+            self.imprimir_ABB(node.left)
             node.get_info()
-            self.imprimir(node.right)
-def imprimir (node):
-  if node is not None:
-    imprimir(node.left)
-    node.get_info()
-    imprimir(node.right)      
+            self.imprimir_ABB(node.right)
 def deleteNode(root, apellido):
     def minValueNode( node):
       current = node
@@ -87,8 +84,9 @@ def deleteNode(root, apellido):
             return temp
         temp = minValueNode(root.right)
         root.apellido = temp.apellido
-        root.right = deleteNode(root.right , temp.apellido)
+        root.right = deleteNode(root.right , temp.apellido) 
     return root 
+
 class Hashing: 
   def __init__(self,size=26):
     self.size=size
@@ -104,13 +102,9 @@ class Hashing:
       self.lista[pos].insertar_ABB(nombre,apellido,email,numero)
   def imprimir_h(self):
     def imprimir (node):
-       if node is not None:
-         imprimir(node.left)
-         node.get_info()
-         imprimir(node.right)
     for i in range (self.size):
       if self.lista[i] is not None:
-        imprimir(self.lista[i].root)
+        imprimir_ABB(self.lista[i].root)
       else:
         char = chr(i+65)
         print ("Sin Contacto en", char)
