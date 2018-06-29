@@ -86,32 +86,30 @@ def deleteNode(root, apellido):
         root.apellido = temp.apellido
         root.right = deleteNode(root.right , temp.apellido) 
     return root 
-
+def hash1(key): #Para obtener la posición se dividio la lista en 26, teniendo 1 posición para cada vocal
+   return ord(key[0])-13
 class Hashing: 
   def __init__(self,size=26):
     self.size=size
     self.lista=[None]*size
-  def hash1(self,key): #Para obtener la posición se dividio la lista en 26, teniendo 1 posición para cada vocal
-      return ord(key[0])-13
   def insertar_h(self, nombre,apellido,email,numero):
-    pos=self.hash1(apellido)%self.size
+    pos=hash1(apellido)%self.size
     if self.lista[pos] is None:
       self.lista[pos]=ABB()
       self.lista[pos].insertar_ABB(nombre,apellido,email,numero)
     else:
       self.lista[pos].insertar_ABB(nombre,apellido,email,numero)
   def imprimir_h(self):
-    def imprimir (node):
     for i in range (self.size):
       if self.lista[i] is not None:
-        imprimir_ABB(self.lista[i].root)
+        self.lista[i].imprimir_ABB(self.lista[i].root)
       else:
         char = chr(i+65)
         print ("Sin Contacto en", char)
   def eliminar_h(self,apellido):
-    pos=self.hash1(apellido)%self.size
+    pos=hash1(apellido)%self.size
     self.lista[pos].deleteNode(self.lista[pos].root, apellido)
   def buscar_h(self,apellido):
-    pos=self.hash1(apellido)%self.size
+    pos=hash1(apellido)%self.size
     self.lista[pos].buscar_ABB(apellido) 
    #Para las F(x) solo se llamo a la posición de la lista para invocar al ABB y luego hacer la función de este.
