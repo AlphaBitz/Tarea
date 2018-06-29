@@ -10,6 +10,7 @@ class Nodo_ABB:
     def get_info(self):
       print (self.nombre,self.apellido,self.email,self.numero)
       return
+
 class ABB:
     def __init__(self):
         self.root = None
@@ -60,7 +61,7 @@ class ABB:
             self.imprimir_ABB(node.left)
             node.get_info()
             self.imprimir_ABB(node.right)
-            def deleteNode(root, apellido):
+def Eliminar_ABB(root, apellido):
     def minValueNode( node):
       current = node
       while(current.left is not None):
@@ -69,9 +70,9 @@ class ABB:
     if root is None:
         return root 
     if apellido < root.apellido:
-        root.left = deleteNode(root.left, apellido)
+        root.left = Eliminar_ABB(root.left, apellido)
     elif apellido > root.apellido:
-        root.right = deleteNode(root.right, apellido)
+        root.right = Eliminar_ABB(root.right, apellido)
     else:
         if root.left is None :
             temp = root.right 
@@ -83,5 +84,5 @@ class ABB:
             return temp
         temp = minValueNode(root.right)
         root.apellido = temp.apellido
-        root.right = deleteNode(root.right , temp.apellido) 
+        root.right = Eliminar_ABB(root.right , temp.apellido) 
     return root 
