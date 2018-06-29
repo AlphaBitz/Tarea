@@ -7,9 +7,7 @@ class Nodo_L:
         self.next = None
     def get_info(self):
       print(self.nombre,self.apellido,self.email,self.numero)
-      return
-        
-
+      return        
 class Lista:
     def __init__(self):
         self.head = None
