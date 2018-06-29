@@ -54,7 +54,6 @@ class ABB:
           return None
         else:
             return self._buscar(apellido, self.root)
-
     def imprimir_ABB(self, node):
         if node==None:
             pass
@@ -62,58 +61,6 @@ class ABB:
             self.imprimir_ABB(node.left)
             node.get_info()
             self.imprimir_ABB(node.right)
-def minValueNode( node):
-      current = node
- 
-    # loop down to find the leftmost leaf
-      while(current.left is not None):
-        current = current.left 
- 
-      return current 
-def eliminar_ABB(root, apellido):
- 
-    # Base Case
-      if root is None:
-        return root 
- 
-    # If the key to be deleted is smaller than the root's
-    # key then it lies in  left subtree
-      if apellido < root.apellido:
-        root.left = deleteNode(root.left, apellido)
- 
-    # If the kye to be delete is greater than the root's key
-    # then it lies in right subtree
-      elif(apellido > root.apellido):
-        root.right = deleteNode(root.right, apellido)
- 
-    # If key is same as root's key, then this is the node
-    # to be deleted
-      else:
-         
-        # Node with only one child or no child
-        if root.left is None :
-            temp = root.right 
-            root = None
-            return temp 
-             
-        elif root.right is None :
-            temp = root.left 
-            root = None
-            return temp
- 
-        # Node with two children: Get the inorder successor
-        # (smallest in the right subtree)
-        temp = minValueNode(root.right)
- 
-        # Copy the inorder successor's content to this node
-        root.apellido = temp.apellido
- 
-        # Delete the inorder successor
-        root.right = deleteNode(root.right , temp.apellido)
- 
- 
-        return root
-
 def deleteNode(root, apellido):
     def minValueNode( node):
       current = node
@@ -137,8 +84,6 @@ def deleteNode(root, apellido):
             return temp
         temp = minValueNode(root.right)
         root.apellido = temp.apellido
-        root.right = deleteNode(root.right , temp.apellido)
- 
- 
+        root.right = deleteNode(root.right , temp.apellido) 
     return root 
 
