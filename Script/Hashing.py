@@ -36,25 +36,14 @@ class ABB:
             self.root = Nodo_ABB(nombre,apellido,email,numero)
         else:
             self._insertar(nombre,apellido,email,numero, self.root)
-    def _buscar(self, apellido, node):
-        if node.apellido == None:
-           return node 
-        elif apellido == node.apellido:
-            print ("Nodo Encontrado:")
-            node.get_info()
-            return node 
-        elif apellido < node.apellido and node.left != None:
-            return self._buscar(apellido, node.left)
-        elif apellido > node.apellido and node.right != None:
-            return self._buscar(apellido, node.right)
-        print("No encontrado")
-    def buscar_ABB(self, apellido):
-        if self.empty():
-          print ("Sin Raiz")
-          return None
-        else:
-            return self._buscar(apellido, self.root)
-
+    def buscar_ABB(self,root,apellido):
+      if root is None:
+        return
+      self.buscar_ABB(root.left, apellido)
+      if root.apellido == apellido:
+        print ("Nodo encontrado")
+        root.get_info()
+      self.buscar_ABB(root.right, apellido)
     def imprimir_ABB(self, node):
         if node==None:
             pass
