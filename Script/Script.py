@@ -2,7 +2,7 @@ from Lista import Nodo_L
 from Lista import Lista
 from ABB import Nodo_ABB
 from ABB import ABB
-from ABB import deleteNode
+from ABB import eliminar_ABB
 from Hashing import Hashing
 from AVL import AVL
 from AVL import Nodo
