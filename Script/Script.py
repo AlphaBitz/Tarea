@@ -26,7 +26,7 @@ class Estructura:
     print ("4.Imprimir contactos")
     opcion2=input ("Ingrese su selección:")
     return opcion2
-  def menuanadir(self,opcion1,opcion2,lista,abb,hashing,avl,root):
+  def menuanadir(self,opcion1,opcion2,lista,abb,hashing):
         print (opcion2)
         if opcion2=="1":
           print ()
@@ -36,47 +36,39 @@ class Estructura:
           email=input("Email:")
           numero=input("Numero:")
           if opcion1=="1":
-            lista.insertar_L(nombre,apellido,email,numero)
+                 lista.insertar_L(nombre,apellido,email,numero)
           if opcion1=="2":
                  abb.insertar_ABB(nombre,apellido,email,numero)
-          if opcion1=="3":
-                 root = avl.insertar_a (root, nombre,apellido,email,numero)
           if opcion1=="4":
                  hashing.insertar_h(nombre,apellido,email,numero)
-  def menueliminar(self,opcion1,opcion2,lista,abb,hashing,avl,root):
+  def menueliminar(self,opcion1,opcion2,lista,abb,hashing):
          if opcion2=="2":
             print ()
             eliminar=input("Ingrese el apellido a eliminar:")
             if opcion1=="1":
-              lista.eliminar_L(eliminar)
+                 lista.eliminar_L(eliminar)
             if opcion1=="2":
-               eliminar_ABB(abb.root,eliminar)
-            if opcion1=="3":
-                 avl.eliminar_a(root,eliminar)
+                 eliminar_ABB(abb.root,eliminar)
             if opcion1=="4":
                  hashing.eliminar_h(eliminar)
-  def menubuscar (self,opcion1,opcion2,lista,abb,hashing,avl,root):
+  def menubuscar (self,opcion1,opcion2,lista,abb,hashing):
           if opcion2=="3":
              print ()
              buscar=input("Ingrese el apellido a buscar:")
              if opcion1=="1":
-               lista.buscar_L(buscar)
+                 lista.buscar_L(buscar)
              if opcion1=="2":
                  abb.buscar_ABB(buscar)
-             if opcion1=="3":
-                 avl.buscar_a(root,buscar)
              if opcion1=="4":
                  hashing.buscar_h(buscar)
-  def menuimprimir(self,opcion1,opcion2,lista,abb,hashing,avl,root):
+  def menuimprimir(self,opcion1,opcion2,lista,abb,hashing):
           if opcion2=="4":
               print ()
               print ("A continuación se imprimira la lista:")
               if opcion1=="1":
-                lista.imprimir_L()
+                 lista.imprimir_L()
               if opcion1=="2":
                  abb.imprimir_ABB(abb.root)
-              if opcion1=="3":
-                 avl.imprimir_a(root)
               if opcion1=="4":
                  hashing.imprimir_h()
   def salir(self):
@@ -100,8 +92,30 @@ b=True
 opcion1=a.menu1()
 while b:
     opcion2=a.menu2(opcion1)
-    a.menuanadir(opcion1,opcion2,lista,abb,hashing,avl,root)
-    a.menueliminar(opcion1,opcion2,lista,abb,hashing,avl,root)
-    a.menubuscar(opcion1,opcion2,lista,abb,hashing,avl,root)
-    a.menuimprimir(opcion1,opcion2,lista,abb,hashing,avl,root)
+    if opcion1=="3":
+      if opcion2=="1":
+          print ()
+          print("Ingrese los datos:")
+          nombre=input("Nombre:")
+          apellido=input("Apellido:")
+          email=input("Email:")
+          numero=input("Numero:")
+          root = avl.insertar_a(root,nombre,apellido,email,numero)
+      if opcion2=="2":
+          print ()
+          eliminar=input("Ingrese el apellido a eliminar:")
+          avl.eliminar_a(root,eliminar)
+      if opcion2=="3":
+          print ()
+          buscar=input("Ingrese el apellido a buscar:")
+          avl.buscar_a(root,buscar)
+      if opcion2=="4":
+          print ()
+          print ("A continuación se imprimira la lista:")
+          avl.imprimir_a(root)
+    else:
+        a.menuanadir(opcion1,opcion2,lista,abb,hashing,avl,root)
+        a.menueliminar(opcion1,opcion2,lista,abb,hashing)
+        a.menubuscar(opcion1,opcion2,lista,abb,hashing)
+        a.menuimprimir(opcion1,opcion2,lista,abb,hashing)
     b=a.salir()
