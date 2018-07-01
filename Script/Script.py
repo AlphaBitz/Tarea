@@ -50,7 +50,7 @@ class Estructura:
             if opcion1=="1":
               lista.eliminar_L(eliminar)
             if opcion1=="2":
-               deleteNode(abb.root,eliminar)
+               eliminar_ABB(abb.root,eliminar)
             if opcion1=="3":
                  avl.eliminar_a(root,eliminar)
             if opcion1=="4":
