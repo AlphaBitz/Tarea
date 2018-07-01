@@ -10,7 +10,6 @@ class Nodo_ABB:
     def get_info(self):
       print (self.nombre,self.apellido,self.email,self.numero)
       return
-
 class ABB:
     def __init__(self):
         self.root = None
@@ -36,14 +35,24 @@ class ABB:
             self.root = Nodo_ABB(nombre,apellido,email,numero)
         else:
             self._insertar(nombre,apellido,email,numero, self.root)
-    def buscar_ABB(self,root,apellido):
-      if root is None:
-        return
-      self.buscar_ABB(root.left, apellido)
-      if root.apellido == apellido:
-        print ("Nodo encontrado")
-        root.get_info()
-      self.buscar_ABB(root.right, apellido)
+    def _buscar(self, apellido, node):
+        if node.apellido == None:
+           return node 
+        elif apellido == node.apellido:
+            print ("Nodo Encontrado:")
+            node.get_info()
+            return node 
+        elif apellido < node.apellido and node.left != None:
+            return self._buscar(apellido, node.left)
+        elif apellido > node.apellido and node.right != None:
+            return self._buscar(apellido, node.right)
+        print("No encontrado")
+    def buscar_ABB(self, apellido):
+        if self.empty():
+          print ("Sin Raiz")
+          return None
+        else:
+            return self._buscar(apellido, self.root)
     def imprimir_ABB(self, node):
         if node==None:
             pass
@@ -51,31 +60,31 @@ class ABB:
             self.imprimir_ABB(node.left)
             node.get_info()
             self.imprimir_ABB(node.right)
-def deleteNode(root, apellido):
-    def minValueNode( node):
-      current = node
-      while(current.left is not None):
-        current = current.left  
-      return current 
-    if root is None:
-        return root 
-    if apellido < root.apellido:
-        root.left = deleteNode(root.left, apellido)
-    elif apellido > root.apellido:
-        root.right = deleteNode(root.right, apellido)
-    else:
-        if root.left is None :
-            temp = root.right 
-            root = None
-            return temp              
-        elif root.right is None :
-            temp = root.left 
-            root = None
-            return temp
-        temp = minValueNode(root.right)
-        root.apellido = temp.apellido
-        root.right = deleteNode(root.right , temp.apellido)
-    return root 
+def eliminar_ABB(root, apellido):
+        if root is None:
+           return None
+        if apellido < root.apellido:
+           root.left = eliminar_ABB(root.left, apellido)
+        elif apellido > root.apellido:
+           root.right = eliminar_ABB(root.right, apellido)
+        else:
+            if root.left:
+                new_root = root.left
+                if root.right:
+                    if new_root.right:
+                        tmp = root.right
+                        while tmp.left:
+                            tmp = tmp.left
+                        tmp.left = new_root.right
+                        new_root.right = root.right
+                    else:
+                        new_root.right = root.right
+            elif root.right:
+                new_root = root.right
+            else:
+                new_root = None
+            root = new_root
+        return root
 class Hashing:
   def __init__(self,size=26):
     self.size=size
@@ -103,8 +112,7 @@ class Hashing:
         print ("Sin Contacto en", char)
   def eliminar_h(self,apellido):
     pos=self.hash1(apellido)%self.size
-    self.lista[pos].deleteNode(self.lista[pos].root, apellido)
+    eliminar_ABB(self.lista[pos].root,apellido)
   def buscar_h(self,apellido):
     pos=self.hash1(apellido)%self.size
     self.lista[pos].buscar_ABB(apellido)
-
