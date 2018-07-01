@@ -64,30 +64,25 @@ class ABB:
             node.get_info()
             self.imprimir_ABB(node.right)
 def eliminar_ABB(root, apellido):
-        if root is None:
-           return None
-        if apellido < root.apellido:
-           root.left = eliminar_ABB(root.left, apellido)
-        elif apellido > root.apellido:
-           root.right = eliminar_ABB(root.right, apellido)
-        else:
-            if root.left:
-                new_root = root.left
-                if root.right:
-                    if new_root.right:
-                        tmp = root.right
-                        while tmp.left:
-                            tmp = tmp.left
-                        tmp.left = new_root.right
-                        new_root.right = root.right
-                    else:
-                        new_root.right = root.right
-            elif root.right:
-                new_root = root.right
-            else:
-                new_root = None
-            root = new_root
-        return root
+	if not root:
+		return root
+	if root.apellido > apellido: 
+		root.left = eliminar_ABB(root.left, apellido)
+	elif root.apellido < apellido: 
+		root.right= eliminar_ABB(root.right, apellido)
+	else: 
+		if not root.right: 
+			return root.left
+		if not root.left: 
+			return root.right
+		temp = root.right
+		mini = temp.apellido
+		while temp.left:
+			temp = temp.left
+			mini = temp.apellido
+		root.apellido = mini 
+		root.right = eliminar_ABB(root.right,root.apellido) 
+	return root
 class Hashing:
   def __init__(self,size=26):
     self.size=size
