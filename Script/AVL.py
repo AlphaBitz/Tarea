@@ -6,7 +6,7 @@ class Nodo():
         self.numero=numero
         self.left = None
         self.right = None
-        self.altura = 1w
+        self.altura = 1
       print (self.nombre,self.apellido,self.email,self.numero)
       return
 class AVL():
