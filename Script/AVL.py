@@ -6,8 +6,7 @@ class Nodo():
         self.numero=numero
         self.left = None
         self.right = None
-        self.altura = 1
-    def get_info(self):
+        self.altura = 1w
       print (self.nombre,self.apellido,self.email,self.numero)
       return
 class AVL():
@@ -107,29 +106,19 @@ class AVL():
         self.imprimir_a(root.left)
         root.get_info()
         self.imprimir_a(root.right)
-    def buscar_a(self,root,apellido):
-      if root is None:
-        return
-      self.buscar_a(root.left, apellido)
-      if root.apellido == apellido:
-        print ("Nodo encontrado")
-        root.get_info()
-      self.buscar_a(root.right, apellido)
-    def _buscar(self, apellido, root):
-        if root.apellido == None:
+     def buscar_a(self,root,apellido):
+        if root is None:
+            print ("Sin Raiz")
+            return None
+        else:
+         if root.apellido == None:
            return  
-        elif apellido == root.apellido:
+         elif apellido == root.apellido:
             print ("Nodo Encontrado:")
             root.get_info()
             return  
-        elif apellido < root.apellido and root.left != None:
-            return self._buscar(apellido, root.left)
-        elif apellido > root.apellido and root.right != None:
-            return self._buscar(apellido, root.right)
-        print("No encontrado")
-    def buscar(self, root, apellido):
-        if root is None:
-          print ("Sin Raiz")
-          return None
-        else:
-          return self._buscar(apellido,root)
+         elif apellido < root.apellido and root.left != None:
+            return self.buscar_a(root.left,apellido)
+         elif apellido > root.apellido and root.right != None:
+            return self.buscar_a(root.right,apellido)
+         print ("No encontrado")  
