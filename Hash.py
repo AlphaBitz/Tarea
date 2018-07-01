@@ -10,7 +10,6 @@ class Nodo_ABB:
     def get_info(self):
       print (self.nombre,self.apellido,self.email,self.numero)
       return
-
 class ABB:
     def __init__(self):
         self.root = None
@@ -55,61 +54,66 @@ class ABB:
         else:
             return self._buscar(apellido, self.root)
     def imprimir_ABB(self, node):
-        if node is None:
+        if node==None:
             pass
         else:
             self.imprimir_ABB(node.left)
             node.get_info()
             self.imprimir_ABB(node.right)
-def deleteNode(root, apellido):
-    def minValueNode( node):
-      current = node
-      while(current.left is not None):
-        current = current.left  
-      return current 
-    if root is None:
-        return root 
-    if apellido < root.apellido:
-        root.left = deleteNode(root.left, apellido)
-    elif apellido > root.apellido:
-        root.right = deleteNode(root.right, apellido)
-    else:
-        if root.left is None :
-            temp = root.right 
-            root = None
-            return temp              
-        elif root.right is None :
-            temp = root.left 
-            root = None
-            return temp
-        temp = minValueNode(root.right)
-        root.apellido = temp.apellido
-        root.right = deleteNode(root.right , temp.apellido) 
-    return root 
-def hash1(key): #Para obtener la posición se dividio la lista en 26, teniendo 1 posición para cada vocal
-   return ord(key[0])-13
-class Hashing: 
+def eliminar_ABB(root, apellido):
+        if root is None:
+           return None
+        if apellido < root.apellido:
+           root.left = eliminar_ABB(root.left, apellido)
+        elif apellido > root.apellido:
+           root.right = eliminar_ABB(root.right, apellido)
+        else:
+            if root.left:
+                new_root = root.left
+                if root.right:
+                    if new_root.right:
+                        tmp = root.right
+                        while tmp.left:
+                            tmp = tmp.left
+                        tmp.left = new_root.right
+                        new_root.right = root.right
+                    else:
+                        new_root.right = root.right
+            elif root.right:
+                new_root = root.right
+            else:
+                new_root = None
+            root = new_root
+        return root
+class Hashing:
   def __init__(self,size=26):
     self.size=size
     self.lista=[None]*size
+  def hash1(self,key): #Para la F(x) De hash, se tomo cada letra del abecedario como una posición, dando un tamaño total de 26.
+      return ord(key[0])-13
   def insertar_h(self, nombre,apellido,email,numero):
-    pos=hash1(apellido)%self.size
+    pos=self.hash1(apellido)%self.size
     if self.lista[pos] is None:
       self.lista[pos]=ABB()
       self.lista[pos].insertar_ABB(nombre,apellido,email,numero)
     else:
       self.lista[pos].insertar_ABB(nombre,apellido,email,numero)
   def imprimir_h(self):
+    def imprimir (node):
+       if node is not None:
+         imprimir(node.left)
+         node.get_info()
+         imprimir(node.right)
     for i in range (self.size):
       if self.lista[i] is not None:
-        self.lista[i].imprimir_ABB(self.lista[i].root)
+        imprimir(self.lista[i].root)
       else:
         char = chr(i+65)
         print ("Sin Contacto en", char)
   def eliminar_h(self,apellido):
-    pos=hash1(apellido)%self.size
-    self.lista[pos].deleteNode(self.lista[pos].root, apellido)
+    pos=self.hash1(apellido)%self.size
+    eliminar_ABB(self.lista[pos].root,apellido)
   def buscar_h(self,apellido):
-    pos=hash1(apellido)%self.size
-    self.lista[pos].buscar_ABB(apellido) 
-   #Para las F(x) solo se llamo a la posición de la lista para invocar al ABB y luego hacer la función de este.
+    pos=self.hash1(apellido)%self.size
+    self.lista[pos].buscar_ABB(apellido)
+   #Para cada F(x) Se llama a las Funciones del ABB en la posición respectiva de cada Arbol
