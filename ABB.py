@@ -10,7 +10,6 @@ class Nodo_ABB:
     def get_info(self):
       print (self.nombre,self.apellido,self.email,self.numero)
       return
-
 class ABB:
     def __init__(self):
         self.root = None
@@ -61,28 +60,28 @@ class ABB:
             self.imprimir_ABB(node.left)
             node.get_info()
             self.imprimir_ABB(node.right)
-def Eliminar_ABB(root, apellido):
-    def minValueNode( node):
-      current = node
-      while(current.left is not None):
-        current = current.left  
-      return current 
-    if root is None:
+def eliminar_ABB(root, apellido):
+        if root is None:
+           return None
+        if apellido < root.apellido:
+           root.left = eliminar_ABB(root.left, apellido)
+        elif apellido > root.apellido:
+           root.right = eliminar_ABB(root.right, apellido)
+        else:
+            if root.left:
+                new_root = root.left
+                if root.right:
+                    if new_root.right:
+                        tmp = root.right
+                        while tmp.left:
+                            tmp = tmp.left
+                        tmp.left = new_root.right
+                        new_root.right = root.right
+                    else:
+                        new_root.right = root.right
+            elif root.right:
+                new_root = root.right
+            else:
+                new_root = None
+            root = new_root
         return root 
-    if apellido < root.apellido:
-        root.left = Eliminar_ABB(root.left, apellido)
-    elif apellido > root.apellido:
-        root.right = Eliminar_ABB(root.right, apellido)
-    else:
-        if root.left is None :
-            temp = root.right 
-            root = None
-            return temp              
-        elif root.right is None :
-            temp = root.left 
-            root = None
-            return temp
-        temp = minValueNode(root.right)
-        root.apellido = temp.apellido
-        root.right = Eliminar_ABB(root.right , temp.apellido) 
-    return root 
