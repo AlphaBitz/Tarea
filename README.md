@@ -1,5 +1,4 @@
-# Tarea
-Entrega 29 de Junio
-a="Juan Ramos".split(" ")
-nombre=a[0]
-apellido=a[1]
+# Tarea EDD (2-3 sin implementar)
+Script: Menu para implementar Estructuras
+Time:Ocupado para calcular tiempos junto con la libreria Faker
+Carpeta Raiz: Estructuras con comentarios, y informe sobre tiempos de complejidad.
