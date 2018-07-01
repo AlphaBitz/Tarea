@@ -4,10 +4,10 @@
 #tiempo AVL:10 contactos >1 seg -- 20 contactos >1 seg -- 100 contactos >1 seg -- 1000 contactos >4 segs
 #Tiempo Hash:10 contactos >1 seg -- 20 contactos >1 seg -- 100 contactos >1 seg -- 1000 contactos 6>x>5 segs
 #Busqueda:
-#Tiempo Lista:10 contactos >1 seg -- 20 contactos >1 seg -- 100 contactos 3>x>2 seg -- 1000 contactos 20 segs
-#Tiempo ABB: 10 contactos >1 seg -- 20 contactos >1 seg -- 100 contactos >2 seg -- 1000 contactos 22 segs 
+#Tiempo Lista:10 contactos >1 seg -- 20 contactos >1 seg -- 100 contactos 3>x>2 seg -- 1000 contactos 22 segs
+#Tiempo ABB: 10 contactos >1 seg -- 20 contactos >1 seg -- 100 contactos >2 seg -- 1000 contactos 20 segs 
 #tiempo AVL:10 contactos >1 seg -- 20 contactos >1 seg -- 100 contactos >2 seg -- 1000 contactos 16 segs
-#Tiempo Hash:10 contactos >1 seg -- 20 contactos >1 seg -- 100 contactos >3 seg -- 1000 contactos 22 segs
+#Tiempo Hash:10 contactos >1 seg -- 20 contactos >1 seg -- 100 contactos >3 seg -- 1000 contactos 18 segs
 #Eliminar:
 #Tiempo Lista:10 contactos >1 seg -- 20 contactos >1 seg -- 100 contactos 3>x>2 seg -- 1000 contactos 10 segs
 #Tiempo ABB:10 contactos >1 seg -- 20 contactos >1 seg -- 100 contactos >1 seg -- 1000 contactos ? segs
