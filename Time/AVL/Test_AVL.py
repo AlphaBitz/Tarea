@@ -1,5 +1,5 @@
-from AVL import Nodo
-from AVL import AVL
+from AVL_Time import Nodo
+from AVL_Time import AVL
 import time
 from faker import Faker
 fake = Faker()    
