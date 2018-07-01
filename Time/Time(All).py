@@ -7,18 +7,20 @@
 #Tiempo Lista:10 contactos >1 seg -- 20 contactos >1 seg -- 100 contactos 3>x>2 seg -- 1000 contactos 20 segs
 #Tiempo ABB: 10 contactos >1 seg -- 20 contactos >1 seg -- 100 contactos >2 seg -- 1000 contactos 22 segs 
 #tiempo AVL:10 contactos >1 seg -- 20 contactos >1 seg -- 100 contactos >2 seg -- 1000 contactos 16 segs
-#Tiempo Hash:10 contactos >1 seg -- 20 contactos >1 seg -- 100 contactos >1 seg -- 1000 contactos 6>x>5 segs
+#Tiempo Hash:10 contactos >1 seg -- 20 contactos >1 seg -- 100 contactos >3 seg -- 1000 contactos 22 segs
 #Eliminar:
 #Tiempo Lista:10 contactos >1 seg -- 20 contactos >1 seg -- 100 contactos 3>x>2 seg -- 1000 contactos 10 segs
-#Tiempo ABB:10 contactos >1 seg -- 20 contactos >1 seg -- 100 contactos >1 seg -- 1000
+#Tiempo ABB:10 contactos >1 seg -- 20 contactos >1 seg -- 100 contactos >1 seg -- 1000 contactos ? segs
+#tiempo AVL:10 contactos >1 seg -- 20 contactos >1 seg -- 100 contactos >1 seg -- 1000 contactos 2 segs
+#Tiempo Hash:10 contactos >1 seg -- 20 contactos >1 seg -- 100 contactos >1 seg -- 1000 contactos ? segs
 from Lista import Nodo_L
 from Lista import Lista
-from ABB import Nodo_ABB
-from ABB import ABB
-from Hashing import Hashing
-from AVL import AVL
-from AVL import Nodo
-from ABB import deleteNode
+from ABB_Time import Nodo_ABB
+from ABB_Time import eliminar_ABB
+from Hashing_Time_Test import Hashing
+from AVL_Time import AVL
+from AVL_Time import Nodo
+from ABB_Time import eliminar_ABB
 import time
 from faker import Faker
 fake = Faker()
