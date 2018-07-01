@@ -7,8 +7,6 @@ class Nodo():
         self.left = None
         self.right = None
         self.altura = 1
-      print (self.nombre,self.apellido,self.email,self.numero)
-      return
 class AVL():
     def insertar_a(self,root,nombre,apellido,email,numero):
       if root is None:
@@ -106,7 +104,7 @@ class AVL():
         self.imprimir_a(root.left)
         root.get_info()
         self.imprimir_a(root.right)
-     def buscar_a(self,root,apellido):
+    def buscar_a(self,root,apellido):
         if root is None:
             print ("Sin Raiz")
             return None
